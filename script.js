@@ -1,5 +1,24 @@
 // // 1. Ask player to input their selection("Rock" "Paper" or "Scissors)
-let playerSelection = prompt("Rock, paper or scissors?")
+let playerSelection = playerAnswer()
+
+function playerAnswer() {
+    let answer = prompt("Rock, paper or scissors?")
+
+    console.log(answer)
+
+    if (answer.toLowerCase() === "rock" || answer.toLowerCase() === "paper" || answer.toLowerCase() === "scissors") {
+        return answer
+    } else if (answer === null) {
+        alert("Please submit an answer.")
+        playerAnswer()
+    } else {
+        alert("Invalid answer. Please enter rock, paper or scissors.")
+        playerAnswer()
+    }
+
+}
+
+
 
 // 2. Randomly determine the computer's choice between "Rock" "Paper" and "Scissors"
 let computerSelection = computerPlay()

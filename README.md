@@ -15,3 +15,6 @@ Planning/Pseudocode:
 #2 - Use math.Random and determine rock/paper/scissors depending on the number it lands on. 
 
 #3 & #4 - Use if and else if statements in a function, and also && logical operator. Return the result to be console.log()'d
+
+
+Link to live version: https://r-lok.github.io/rock-paper-scissors/

@@ -4,17 +4,47 @@ let rock = document.querySelector('#rock');
 let paper = document.querySelector('#paper');
 let scissors = document.querySelector('#scissors');
 let resultBoard = document.querySelector('.result');
+let playerScoreDisplay = document.querySelector('.playerScoreDisplay');
+let computerScoreDisplay = document.querySelector('.computerScoreDisplay');
+let playerWins = 0
+let computerWins = 0
+let ties = 0
 
 function playerPlays(e) {
     const playerSelection = `${e.target.id.charAt(0).toUpperCase()}` + `${e.target.id.slice(1)}`;
+    
     let computerSelection = computerPlay();
     let whoWins = playRound(playerSelection, computerSelection);
+    let defeatMessage = "You lost the match!"
+
     resultBoard.innerText = whoWins;
+
+    if (whoWins.charAt(4) === "w") {
+        playerWins++;
+    } else if (whoWins.charAt(4) === "l") {
+        computerWins++;
+    } else {
+        ties++;
+    }
+
+    playerScoreDisplay.textContent = playerWins;
+    computerScoreDisplay.textContent = computerWins;
+
+    if (computerWins === 5) {
+        resultBoard.innerText = whoWins + ``
+    }
+
+
 }
 
 rock.addEventListener('click', playerPlays);
 paper.addEventListener('click', playerPlays);
 scissors.addEventListener('click', playerPlays);
+
+function resetGame() {
+    resultBoard.textContent = "";
+    scoreBoard.textContent = "";
+}
 
 
 // 2. Function to randomly determine the computer's choice between "Rock" "Paper" and "Scissors"
@@ -54,7 +84,7 @@ function playRound (playerSelection, computerSelection) {
             }
 
 
-// 5. Play a best out of five
+// 5. Play until once person has five wins
 
 // game()
 
@@ -63,8 +93,9 @@ function playRound (playerSelection, computerSelection) {
 //     let playerWins = 0
 //     let computerWins = 0
 //     let gameCounter = 0
+//     resultBoard.textContent = ""
 
-//     for (let i = 0; i < 5; i++) {
+//     for (let i = 0; playerWins < 5 || computerWins <; i++) {
 //         let playerSelection = playerAnswer();
 //         let computerSelection = computerPlay();
 //         let outcome = playRound(playerSelection, computerSelection);

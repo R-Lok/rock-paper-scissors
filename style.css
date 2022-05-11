@@ -1,15 +1,20 @@
+* {
+    border: black solid 1px;
+}
+
 .heading {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 200px;
-    font-size: 40px;
+    font-size: 48px;
 }
 
 .rpsContainer {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
+    gap: 72px;
 }
 
 button {
@@ -25,4 +30,19 @@ button {
     margin-bottom: 50px;
     font-size: 32px;
     box-sizing: border-box;
+}
+
+.scoreBoardHeading {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+.scoreBoard {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    
 }

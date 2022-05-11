@@ -1,11 +1,12 @@
 //1. function to play a round the moment a the player clicks any of the three buttons
 
-let rock = document.querySelector('#rock');
-let paper = document.querySelector('#paper');
-let scissors = document.querySelector('#scissors');
-let resultBoard = document.querySelector('.result');
-let playerScoreDisplay = document.querySelector('.playerScoreDisplay');
-let computerScoreDisplay = document.querySelector('.computerScoreDisplay');
+const rock = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const scissors = document.querySelector('#scissors');
+const resultBoard = document.querySelector('.result');
+const playerScoreDisplay = document.querySelector('.playerScoreDisplay');
+const computerScoreDisplay = document.querySelector('.computerScoreDisplay');
+const resetButton = document.querySelector('#playAgain');
 let playerWins = 0
 let computerWins = 0
 let ties = 0
@@ -31,7 +32,11 @@ function playerPlays(e) {
     computerScoreDisplay.textContent = computerWins;
 
     if (computerWins === 5) {
-        resultBoard.innerText = whoWins + ``
+        computerMatchWin()
+    }
+
+    if (playerWins === 5) {
+        playerMatchWin()
     }
 
 
@@ -40,10 +45,20 @@ function playerPlays(e) {
 rock.addEventListener('click', playerPlays);
 paper.addEventListener('click', playerPlays);
 scissors.addEventListener('click', playerPlays);
+resetButton.addEventListener('click', resetGame)
 
 function resetGame() {
     resultBoard.textContent = "";
-    scoreBoard.textContent = "";
+    playerScoreDisplay.textContent = 0;
+    computerScoreDisplay.textContent = 0;
+    rock.style.display = 'block';
+    paper.style.display = 'block';
+    scissors.style.display = 'block';
+    resetButton.style.display = 'none';
+    playerWins = 0;
+    computerWins = 0;
+    ties = 0;
+
 }
 
 
@@ -82,6 +97,25 @@ function playRound (playerSelection, computerSelection) {
                    return `It's a tie! ${playerSelection} ties with ${computerSelection}!`
                }
             }
+
+
+
+function playerMatchWin() {
+    resultBoard.innerText =` Match over! You are victorious!`;
+        rock.style.display = 'none';
+        paper.style.display = 'none';
+        scissors.style.display = 'none';
+        resetButton.style.display = 'block';
+}
+
+function computerMatchWin() {  
+    resultBoard.innerText = ` Match over! You are defeated!`;
+    rock.style.display = 'none';
+    paper.style.display = 'none';
+    scissors.style.display = 'none';
+    resetButton.style.display = 'block';
+}
+
 
 
 // 5. Play until once person has five wins

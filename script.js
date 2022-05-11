@@ -1,20 +1,21 @@
-// // 1. Function to ask player to input their selection("Rock" "Paper" or "Scissors)
-// let playerSelection = playerAnswer()
+//1. function to play a round the moment a the player clicks any of the three buttons
 
-function playerAnswer() {
-    let answer = prompt("Rock, paper or scissors?")
+let rock = document.querySelector('#rock');
+let paper = document.querySelector('#paper');
+let scissors = document.querySelector('#scissors');
+let resultBoard = document.querySelector('.result');
 
-    if (answer === null) {
-        alert("Please submit an answer.")
-        playerAnswer()
-    } else if (answer.toLowerCase() === "rock" || answer.toLowerCase() === "paper" || answer.toLowerCase() === "scissors") {
-        return answer.charAt(0).toUpperCase() + answer.slice(1).toLowerCase()
-    } else {
-        alert("Invalid answer. Please enter rock, paper or scissors.")
-        playerAnswer()
-    }
-
+function playerPlays(e) {
+    const playerSelection = `${e.target.id.charAt(0).toUpperCase()}` + `${e.target.id.slice(1)}`;
+    let computerSelection = computerPlay();
+    let whoWins = playRound(playerSelection, computerSelection);
+    resultBoard.innerText = whoWins;
 }
+
+rock.addEventListener('click', playerPlays);
+paper.addEventListener('click', playerPlays);
+scissors.addEventListener('click', playerPlays);
+
 
 // 2. Function to randomly determine the computer's choice between "Rock" "Paper" and "Scissors"
 // let computerSelection = computerPlay()
@@ -42,7 +43,7 @@ function playRound (playerSelection, computerSelection) {
     if (playerSelection === "Rock" && computerSelection === "paper" ||
         playerSelection === "Paper" && computerSelection === "scissors" ||
         playerSelection === "Scissors" && computerSelection === "rock") {
-            return `You lose! ${computerSelection} beats ${playerSelection}!`
+            return `You lose! ${playerSelection} loses to ${computerSelection}!`
     } else if (playerSelection === "Rock" && computerSelection === "scissors" ||
                playerSelection === "Paper" && computerSelection === "rock" ||
                playerSelection === "Scissors" && computerSelection === "paper") {
@@ -55,34 +56,34 @@ function playRound (playerSelection, computerSelection) {
 
 // 5. Play a best out of five
 
-game()
+// game()
 
-function game() {
+// function game() {
 
-    let playerWins = 0
-    let computerWins = 0
-    let gameCounter = 0
+//     let playerWins = 0
+//     let computerWins = 0
+//     let gameCounter = 0
 
-    for (let i = 0; i < 5; i++) {
-        let playerSelection = playerAnswer();
-        let computerSelection = computerPlay();
-        let outcome = playRound(playerSelection, computerSelection);
-        gameCounter++;
+//     for (let i = 0; i < 5; i++) {
+//         let playerSelection = playerAnswer();
+//         let computerSelection = computerPlay();
+//         let outcome = playRound(playerSelection, computerSelection);
+//         gameCounter++;
 
-        if (outcome.charAt(4) === 'w') {
-            playerWins++;
-        } else if (outcome.charAt(4) === 'l') {
-            computerWins++;
-        }
-        console.log(`${outcome} You currently have ${playerWins} wins and the computer has ${computerWins} wins. You have played ${gameCounter} out of 5 games.`)
-    }
+//         if (outcome.charAt(4) === 'w') {
+//             playerWins++;
+//         } else if (outcome.charAt(4) === 'l') {
+//             computerWins++;
+//         }
+//         console.log(`${outcome} You currently have ${playerWins} wins and the computer has ${computerWins} wins. You have played ${gameCounter} out of 5 games.`)
+//     }
 
-    if (playerWins > computerWins) {
-        console.log(`Match over, you won!`);
-    } else if (computerWins > playerWins) {
-        console.log(`Match over, you lost!`);
-    } else {
-        console.log(`Match over, it's a draw!`);
-    }
+//     if (playerWins > computerWins) {
+//         console.log(`Match over, you won!`);
+//     } else if (computerWins > playerWins) {
+//         console.log(`Match over, you lost!`);
+//     } else {
+//         console.log(`Match over, it's a draw!`);
+//     }
 
-} 
+// } 
